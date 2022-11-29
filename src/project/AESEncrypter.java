@@ -35,6 +35,13 @@ public class AESEncrypter {
 
     private static short[][] mixMatrix = {{2, 3, 1, 1}, {1, 2, 3, 1}, {1, 1, 2, 3}, {3, 1, 1, 2}}; //the mixMatrix for MixColumns()
 
+    public static short[][] getMixMatrix() {
+        return mixMatrix;
+    }
+
+    public static void setMixMatrix(short[][] mixMatrix) {
+        AESEncrypter.mixMatrix = mixMatrix;
+    }
 
     /**
      * Creates an AES Encryption object in preparation for encryption with a given key.
@@ -109,16 +116,12 @@ public class AESEncrypter {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 matrix[i][j] = stateMatrix[i][j];
+                matrix2[i][j] = stateMatrix[i][j];
             }
         }
         switch (round) {
             case 0: {
                 AllStateStates.setEnd0round(matrix);
-                for (int i = 0; i < 4; i++) {
-                    for (int j = 0; j < 4; j++) {
-                        matrix2[i][j] = stateMatrix[i][j];
-                    }
-                }
                 AllStateCopy.setEnd0round(matrix2);
                 break;
             }
@@ -126,16 +129,15 @@ public class AESEncrypter {
                 switch (step) {
                     case 0: {
                         AllStateStates.setEnd1SubBytes(matrix);
-                        for (int i = 0; i < 4; i++) {
-                            for (int j = 0; j < 4; j++) {
-                                matrix2[i][j] = stateMatrix[i][j];
-                            }
-                        }
                         AllStateCopy.setEnd1SubBytes(matrix2);
                         break;
                     }
                     case 1: {
                         AllStateStates.setEnd1ShiftRows(matrix);
+                        break;
+                    }
+                    case 2: {
+                        AllStateStates.setEnd1MixColumns(matrix);
                         break;
                     }
                 }
@@ -160,6 +162,7 @@ public class AESEncrypter {
         System.out.println("Shiftrows round " + round);
         printMatrix();
         MixColumns();
+        copyStateMatrix(round,2);
         System.out.println("MixColumns round " + round);
         printMatrix();
         AddRoundKey(round);

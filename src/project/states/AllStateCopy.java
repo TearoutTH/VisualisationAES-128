@@ -4,8 +4,18 @@ public class AllStateCopy {
     private static short[][] end0round = {{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}};
     private static short[][] end1SubBytes = {{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}};
 
+    private static short[][] end1MixColumns = {{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}};
+
     public static short[][] getEnd1SubBytes() {
         return end1SubBytes;
+    }
+
+public static short[][] getEnd1MixColumns() {
+        return end1MixColumns;
+    }
+
+    public static void setEnd1MixColumns(short[][] end1MixColumns) {
+        AllStateCopy.end1MixColumns = end1MixColumns;
     }
 
     public static void setEnd1SubBytes(short[][] end1SubBytes) {
