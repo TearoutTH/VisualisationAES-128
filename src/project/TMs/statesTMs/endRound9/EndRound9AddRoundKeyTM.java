@@ -1,10 +1,10 @@
-package project.TMs.keysTMs;
+package project.TMs.statesTMs.endRound9;
 
-import project.calculations.KeyExpander;
+import project.states.AllStates;
 
 import javax.swing.table.AbstractTableModel;
 
-public class Round1KeyTM extends AbstractTableModel {
+public class EndRound9AddRoundKeyTM extends AbstractTableModel {
     @Override
     public int getRowCount() {
         return 4;
@@ -17,7 +17,7 @@ public class Round1KeyTM extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        String value = Integer.toHexString(KeyExpander.getRoundKeys()[rowIndex][columnIndex+4]);
+        String value = Integer.toHexString(AllStates.getEnd9AddRoundKey()[rowIndex][columnIndex]);
         if (value.length() == 1) {
             return "0" + value;
         } else {

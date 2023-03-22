@@ -15,8 +15,10 @@ public class TableWithRowHeader  extends JTable{
         super();
         mainTable = table;
         setModel(new RowNumberTableModel());
-        setPreferredScrollableViewportSize(getPreferredSize());
-        getColumnModel().getColumn(0).setPreferredWidth(50);
+        setPreferredScrollableViewportSize(new Dimension(20,20));
+        getColumnModel().getColumn(0).setMinWidth(20);
+        getColumnModel().getColumn(0).setPreferredWidth(20);
+        getColumnModel().getColumn(0).setMaxWidth(20);
         setFocusable(false);
         setEnabled(false);
         getColumnModel().getColumn(0).setCellRenderer( mainTable.getTableHeader().getDefaultRenderer() );

@@ -4,7 +4,7 @@ import project.calculations.KeyExpander;
 
 import javax.swing.table.AbstractTableModel;
 
-public class Round1KeyTM extends AbstractTableModel {
+public class Round5KeyTM extends AbstractTableModel {
     @Override
     public int getRowCount() {
         return 4;
@@ -17,7 +17,7 @@ public class Round1KeyTM extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        String value = Integer.toHexString(KeyExpander.getRoundKeys()[rowIndex][columnIndex+4]);
+        String value = Integer.toHexString(KeyExpander.getRoundKeys()[rowIndex][columnIndex+20]);
         if (value.length() == 1) {
             return "0" + value;
         } else {

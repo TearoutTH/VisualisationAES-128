@@ -1,6 +1,6 @@
 package project.TMs.keysTMs;
 
-import project.KeyExpander;
+import project.calculations.KeyExpander;
 
 import javax.swing.table.AbstractTableModel;
 
@@ -17,6 +17,11 @@ public class InitialKeyTM extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        return Integer.toHexString(KeyExpander.getRoundKeys()[rowIndex][columnIndex]);
+        String value = Integer.toHexString(KeyExpander.getRoundKeys()[rowIndex][columnIndex]);
+        if (value.length() == 1) {
+            return "0" + value;
+        } else {
+            return value;
+        }
     }
 }
